@@ -1,13 +1,15 @@
-# exit code, time, directory, git branch, $/#
+# repo@branch (HEAD) files changed
 
 # set the prompt command
 PROMPT_COMMAND=__prompt_command
 
 # yes
 export PATH=$PATH:./
+alias ..='cd ..'
 
 # set colors
 CBlack="\[\e[30m\]"
+CBBlack="\[\e[1;30m\]"
 CRed="\[\e[31m\]"
 CBRed="\[\e[1;31m\]"
 CGreen="\[\e[32m\]"
@@ -36,7 +38,7 @@ BGCyan="\[\e[46m\]"
 BGBCyan="\e[\1;46m\]"
 
 # test color setup (pretty)
-__test_color_prompt ()
+__test_colors_prompt ()
 {
     PS1=""
     PS1+="${CRed}red${CReset} "
@@ -47,50 +49,22 @@ __test_color_prompt ()
     PS1+="${CCyan}cyan${CReset} "
 }
 
-# prompt command (sets up PS1)
+# set up PS1
 __prompt_command ()
 {
-    local EXIT_STATUS=$?
-    PS1=""
+    PS1="\n"
 
-    if [ ${EXIT_STATUS} = 0 ]; then
-        PS1+="${CGreen}"
+    local isgit=$(git rev-parse --git-dir --is-inside-git-dir --is-bare-repository --is-inside-work-tree --short HEAD 2>/dev/null)
+    local gitdir=$(git rev-parse --git-dir)
+
+    if [ -z "$isgit" ]; then
+        PS1+="nogit ${CBBlue}\w${CReset} ${CGreen}\s\$${CReset} "
     else
-        PS1+="${CRed}"
-    fi
-
-    PS1+="${EXIT_STATUS}${CReset} "
-    PS1+="${CBCyan}\t${CReset} "
-    PS1+="${CBBlue}\W${CReset} "
-
-    if [ -d .git ]; then
-        PS1+="${BGPurple}${CBlack}$(__git_ps1 '%s')${CReset} "
-    fi
-
-    if [ "\$" == "$" ]; then
-        PS1+="${CYellow}\$${CReset} "
-    else
-        PS1+="${CRed}\$${CReset} "
+        if [ $(cat ${gitdir}/description) != "Unnamed repository; edit this file 'description' to name the repository." ]; then
+            PS1+="${CGreen}$(cat ${gitdir}/description)${CReset}${CPurple}@${CReset}"
+        fi
+        PS1+="${CBBlack}$(__git_ps1 '%s')${CReset} "
+        PS1+="${CBYellow}($(git show-ref -s12))${CReset} "
+        PS1+="${CBRed}$(git status -s | grep -c '')${CReset} "
     fi
 }
-
-# \a bell
-# \d date
-# \e escape
-# \h hostname
-# \H hostname
-# \j unknown
-# \l console
-# \n newline
-# \r carriage return
-# \s shell name
-# \t time (24h)
-# \t time (12h)
-# \u user
-# \v shell version
-# \V full shell version
-# \w full working directory
-# \W current directory name
-# \! command number
-# \@ pretty time
-# \$ $ or #
