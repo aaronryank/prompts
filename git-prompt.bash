@@ -55,16 +55,20 @@ __prompt_command ()
     PS1="\n"
 
     local isgit=$(git rev-parse --git-dir --is-inside-git-dir --is-bare-repository --is-inside-work-tree --short HEAD 2>/dev/null)
-    local gitdir=$(git rev-parse --git-dir)
+    local gitdir=$(git rev-parse --git-dir 2>/dev/null)
 
-    if [ -z "$isgit" ]; then
-        PS1+="nogit ${CBBlue}\w${CReset} ${CGreen}\s\$${CReset} "
+    if [ -z "$isgit" ] 2>/dev/null; then
+        PS1+="${CRed}nogit${CReset} ${CBBlue}\w${CReset} ${CGreen}\s\$${CReset} "
     else
-        if [ $(cat ${gitdir}/description) != "Unnamed repository; edit this file 'description' to name the repository." ]; then
-            PS1+="${CGreen}$(cat ${gitdir}/description)${CReset}${CPurple}@${CReset}"
+        local reponame=$(basename $(git rev-parse --show-toplevel))
+        PS1+="${CGreen}${reponame}${CReset}${CPurple}@${CReset}";
+        PS1+="${CBBlack}$(__git_ps1 '%s')${CReset}"
+        if [ -d .git ]; then
+            false;
+        else
+            PS1+="${CPurple}@${CReset}${CBBlue}\W${CReset}"
         fi
-        PS1+="${CBBlack}$(__git_ps1 '%s')${CReset} "
-        PS1+="${CBYellow}($(git show-ref -s12))${CReset} "
+        PS1+=" ${CBYellow}($(git show-ref -s12 | tail -n1))${CReset} "
         PS1+="${CBRed}$(git status -s | grep -c '')${CReset} "
     fi
 }
