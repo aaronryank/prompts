@@ -60,15 +60,25 @@ __prompt_command ()
     if [ -z "$isgit" ] 2>/dev/null; then
         PS1+="${CRed}nogit${CReset} ${CBBlue}\w${CReset} ${CGreen}\s\$${CReset} "
     else
-        local reponame=$(basename $(git rev-parse --show-toplevel))
-        PS1+="${CGreen}${reponame}${CReset}${CPurple}@${CReset}";
-        PS1+="${CBBlack}$(__git_ps1 '%s')${CReset}"
-        if [ -d .git ]; then
+        local fileschanged=$(git status -s | grep -c '')
+        local reponame=$(basename $(git rev-parse --show-toplevel))      # get repository name
+
+        PS1+="${CGreen}${reponame}${CReset}${CPurple}@${CReset}";        # repo@
+        PS1+="${CBBlack}$(__git_ps1 '%s')${CReset} "                     # branch
+
+        if [ -d .git ]; then                                             # if in base of repository
             false;
         else
-            PS1+="${CPurple}@${CReset}${CBBlue}\W${CReset}"
+            PS1+="${CBlue}\W${CReset} "                                  # @cwd if not in base
         fi
-        PS1+=" ${CBYellow}($(git show-ref -s12 | tail -n1))${CReset} "
-        PS1+="${CBRed}$(git status -s | grep -c '')${CReset} "
+        PS1+="${CBYellow}($(git show-ref -s12 | tail -n1)${CReset} "     # (sha1)
+
+        if [ "${fileschanged}" != 0 ]; then
+            PS1+="${CBRed}${fileschanged}${CReset}"                      # files-changed
+        else
+            PS1+="${CBGreen}clean${CReset}"
+        fi
+
+        PS1+="${CBYellow})${CReset}\n$ "
     fi
 }
