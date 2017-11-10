@@ -2,10 +2,10 @@
 
 ![](images/git-prompt.PNG)
 
-    exit-code time-24hr basename branch $
+    git-repo@branch (sha1) files-changed
 
 # [simple-info](simple-info.bash)
 
 ![](images/simple-info.PNG)
 
-    git-repo@branch (sha1) files-changed
+    exit-code time-24hr basename branch $
