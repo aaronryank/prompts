@@ -63,10 +63,6 @@ __prompt_command ()
     PS1+="${CBCyan}\t${CReset} "
     PS1+="${CBBlue}\W${CReset} "
 
-    if [ -d .git ]; then
-        PS1+="${BGPurple}${CBlack}$(__git_ps1 '%s')${CReset} "
-    fi
-
     if [ "\$" == "$" ]; then
         PS1+="${CYellow}\$${CReset} "
     else
