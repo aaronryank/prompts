@@ -1,13 +1,15 @@
-# exit code, time, directory, git branch, $/#
+# prompt skeleton file
 
 # set the prompt command
 PROMPT_COMMAND=__prompt_command
 
 # yes
 export PATH=$PATH:./
+alias ..='cd ..'
 
 # set colors
 CBlack="\[\e[30m\]"
+CBBlack="\[\e[1;30m\]"
 CRed="\[\e[31m\]"
 CBRed="\[\e[1;31m\]"
 CGreen="\[\e[32m\]"
@@ -36,7 +38,7 @@ BGCyan="\[\e[46m\]"
 BGBCyan="\e[\1;46m\]"
 
 # test color setup (pretty)
-__test_color_prompt ()
+__test_colors_prompt ()
 {
     PS1=""
     PS1+="${CRed}red${CReset} "
@@ -47,25 +49,20 @@ __test_color_prompt ()
     PS1+="${CCyan}cyan${CReset} "
 }
 
-# prompt command (sets up PS1)
 __prompt_command ()
 {
-    local EXIT_STATUS=$?
-    PS1=""
+    local EXIT_STATUS="$?"
+    PS1="${CReset}\n"
 
-    if [ ${EXIT_STATUS} = 0 ]; then
-        PS1+="${CGreen}"
-    else
-        PS1+="${CRed}"
+    if [ "$EXIT_STATUS" != 0 ]; then
+        PS1+="${CRed}${EXIT_STATUS}${CReset} "
     fi
 
-    PS1+="${EXIT_STATUS}${CReset} "
-    PS1+="${CBCyan}\t${CReset} "
-    PS1+="${CBBlue}\W${CReset} "
+    PS1+="${CYellow}\u[${CReset}${CBBlack}\l${CReset}${CYellow}]${CReset} "
+    PS1+="${CPurple}(\d, \@)${CReset} "
+    PS1+="${CCyan}\w${CReset}"
 
-    if [ "\$" == "$" ]; then
-        PS1+="${CYellow}\$${CReset} "
-    else
-        PS1+="${CRed}\$${CReset} "
-    fi
+    PS1+="${CReset}\n"
+    PS1+="${BGRed}${CBlack}\!${CReset} "
+    PS1+="${CGreen}\s\v${CBGreen}\$${CReset} "
 }

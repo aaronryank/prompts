@@ -1,0 +1,20 @@
+\a bell
+\d date
+\e escape
+\h hostname
+\H hostname
+\j unknown
+\l console
+\n newline
+\r carriage return
+\s shell name
+\t time (24h)
+\t time (12h)
+\u user
+\v shell version
+\V full shell version
+\w full working directory
+\W current directory name
+\! command number
+\@ pretty time
+\$ $ or #

@@ -1,5 +1,3 @@
-# repo@branch (HEAD) files changed
-
 # set the prompt command
 PROMPT_COMMAND=__prompt_command
 
@@ -58,7 +56,7 @@ __prompt_command ()
     local gitdir=$(git rev-parse --git-dir 2>/dev/null)
 
     if [ -z "$isgit" ] 2>/dev/null; then
-        PS1+="${CRed}nogit${CReset} ${CBBlue}\w${CReset} ${CGreen}\s\$${CReset} "
+        PS1+="${CRed}nogit${CReset} ${CBBlue}\w${CReset}"
     else
         local fileschanged=$(git status -s | grep -c '')
         local reponame=$(basename $(git rev-parse --show-toplevel))      # get repository name
@@ -79,6 +77,8 @@ __prompt_command ()
             PS1+="${CBGreen}clean${CReset}"
         fi
 
-        PS1+="${CBYellow})${CReset}\n$ "
+        PS1+="${CBYellow})${CReset}"
     fi
+
+    PS1+="\n$ "
 }
