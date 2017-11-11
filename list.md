@@ -1,3 +1,10 @@
+# [bare](bare.bash)
+
+![bare.bash](images/bare.PNG)
+
+    contains a green > for every command that executed successfully and a red > for every command that exited with a nonzeor exit code.
+    reset_prompt resets to one >.
+
 # [git-prompt](git-prompt.bash)
 
 ![git-prompt.bash](images/git-prompt.PNG)
@@ -15,5 +22,5 @@
 
 ![power.bash](images/power.PNG)
 
-    User[console] (Date, time) directory
+    User[console] (date, time) directory
     bash-version$ 
