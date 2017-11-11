@@ -6,6 +6,12 @@
 
  - Call `reset_prompt` to reset the prompt to one green <code>&gt;</code>.
 
+# [debian](debian.bash)
+
+![debian.bash](images/debian.PNG)
+
+    username@hostname:cwd$
+
 # [git-prompt](git-prompt.bash)
 
 ![git-prompt.bash](images/git-prompt.PNG)
