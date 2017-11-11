@@ -49,6 +49,8 @@ __test_colors_prompt ()
     PS1+="${CCyan}cyan${CReset} "
 }
 
+export FULLCWD=1
+
 __prompt_command ()
 {
     local EXIT_STATUS="$?"
@@ -60,7 +62,12 @@ __prompt_command ()
 
     PS1+="${CYellow}\u[${CReset}${CBBlack}\l${CReset}${CYellow}]${CReset} "
     PS1+="${CPurple}(\d, \@)${CReset} "
-    PS1+="${CCyan}\w${CReset}"
+
+    if [ $FULLCWD = 0 ]; then
+        PS1+="${CCyan}\W${CReset}"
+    else
+        PS1+="${CCyan}\w${CReset}"
+    fi
 
     PS1+="${CReset}\n"
     PS1+="${BGRed}${CBlack}\!${CReset} "

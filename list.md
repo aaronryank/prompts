@@ -3,7 +3,8 @@
 ![bare.bash](images/bare.PNG)
 
     contains a green > for every command that executed successfully and a red > for every command that exited with a nonzeor exit code.
-    reset_prompt resets to one >.
+
+ - Call `reset_prompt` to reset the prompt to one green <code>&gt;</code>.
 
 # [git-prompt](git-prompt.bash)
 
@@ -18,9 +19,13 @@
 
     exit-code time-24hr basename branch $ 
 
+ - Set `$FULLCWD` to `1` to print the full directory name instead of the basename.
+
 # [power](power.bash)
 
 ![power.bash](images/power.PNG)
 
     User[console] (date, time) directory
-    bash-version$ 
+    shell-version$ 
+
+ - Set `$FULLCWD` to `0` to print the basename instead of the full directory name.

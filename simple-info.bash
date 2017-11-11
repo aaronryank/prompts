@@ -47,13 +47,15 @@ __test_color_prompt ()
     PS1+="${CCyan}cyan${CReset} "
 }
 
+export FULLCWD=0
+
 # prompt command (sets up PS1)
 __prompt_command ()
 {
     local EXIT_STATUS=$?
     PS1=""
 
-    if [ ${EXIT_STATUS} = 0 ]; then
+    if [ $EXIT_STATUS = 0 ]; then
         PS1+="${CGreen}"
     else
         PS1+="${CRed}"
@@ -61,7 +63,12 @@ __prompt_command ()
 
     PS1+="${EXIT_STATUS}${CReset} "
     PS1+="${CBCyan}\t${CReset} "
-    PS1+="${CBBlue}\W${CReset} "
+
+    if [ $FULLCWD = 0 ]; then
+        PS1+="${CBBlue}\W${CReset} "
+    else
+        PS1+="${CBBlue}\w${CReset} "
+    fi
 
     if [ "\$" == "$" ]; then
         PS1+="${CYellow}\$${CReset} "
