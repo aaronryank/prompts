@@ -19,7 +19,7 @@ CBBlue="\[\e[1;34m\]"
 CPurple="\[\e[35m\]"
 CBPurple="\[\e[1;35m\]"
 CCyan="\[\e[36m\]"
-CBCyan="\e[\1;36m\]"
+CBCyan="\e[1;36m\]"
 CReset="\[\e[0m\]"
 
 BGRed="\[\e[41m\]"
