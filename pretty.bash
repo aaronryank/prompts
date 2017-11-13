@@ -2,7 +2,6 @@
 PROMPT_COMMAND=__prompt_command
 
 # yes
-export PATH=$PATH:./
 alias ..='cd ..'
 
 # set colors
