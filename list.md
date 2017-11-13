@@ -6,6 +6,12 @@
 
  - Call `reset_prompt` to reset the prompt to one green <code>&gt;</code>.
 
+# [cmd.exe](cmd-exe.bash)
+
+![cmd.exe.bash](images/cmd-exe.PNG)
+
+    cwd>
+
 # [debian](debian.bash)
 
 ![debian.bash](images/debian.PNG)
@@ -19,13 +25,11 @@
     git-repo@branch cwd (sha1 files-changed)
     $ 
 
-# [simple-info](simple-info.bash)
+# [pretty](pretty.bash)
 
-![simple-info.bash](images/simple-info.PNG)
+![pretty.bash](images/pretty.PNG)
 
-    exit-code time-24hr basename branch $ 
-
- - Set `$FULLCWD` to `1` to print the full directory name instead of the basename.
+    [:) for success, :( for error] time-with-pretty-color cwd $
 
 # [power](power.bash)
 
@@ -35,3 +39,11 @@
     shell-version$ 
 
  - Set `$FULLCWD` to `0` to print the basename instead of the full directory name.
+
+# [simple-info](simple-info.bash)
+
+![simple-info.bash](images/simple-info.PNG)
+
+    exit-code time-24hr basename branch $ 
+
+ - Set `$FULLCWD` to `1` to print the full directory name instead of the basename.
