@@ -2,7 +2,7 @@
 
 ![bare.bash](images/bare.PNG)
 
-    contains a green > for every command that executed successfully and a red > for every command that exited with a nonzeor exit code.
+    contains a green > for every command that executed successfully and a red > for every command that exited with a nonzero exit code.
 
  - Call `reset_prompt` to reset the prompt to one green <code>&gt;</code>.
 
