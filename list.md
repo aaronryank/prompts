@@ -35,7 +35,7 @@
 
 ![power.bash](images/power.PNG)
 
-    User[console] (date, time) directory
+    User[console device] (date, time) directory
     shell-version$ 
 
  - Set `$FULLCWD` to `0` to print the basename instead of the full directory name.
