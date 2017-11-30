@@ -19,7 +19,7 @@ CBBlue="\[\e[1;34m\]"
 CPurple="\[\e[35m\]"
 CBPurple="\[\e[1;35m\]"
 CCyan="\[\e[36m\]"
-CBCyan="\e[\1;36m\]"
+CBCyan="\[\e[1;36m\]"
 CReset="\[\e[0m\]"
 
 BGRed="\[\e[41m\]"
@@ -33,7 +33,7 @@ BGBBlue="\[\e[1;44m\]"
 BGPurple="\[\e[45m\]"
 BGBPurple="\[\e[1;45m\]"
 BGCyan="\[\e[46m\]"
-BGBCyan="\e[\1;46m\]"
+BGBCyan="\e[1;46m\]"
 
 # test color setup (pretty)
 __test_color_prompt ()
